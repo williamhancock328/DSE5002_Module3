@@ -2,7 +2,9 @@
 title: "Week 3 Exercises"
 author: "William Hancock"
 date: "11/4/2024"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 ---
 
 Please complete all exercises below. You may use any library that we have covered in class UP TO THIS POINT. 
