@@ -1,7 +1,7 @@
 ---
 title: "Week 3 Exercises"
-author: "HD Sheets"
-date: "10/1/2024"
+author: "William Hancock"
+date: "11/4/2024"
 output: pdf_document
 ---
 
@@ -29,12 +29,22 @@ Note:
 You will probably want to use stringr
 
 ```{R}
+require("stringr")
+
 name_in="Sheets, Dave"
 
 reorder_name<-function(last_first){
-  #your code here
+  #split the string
+  my_splits = str_split_fixed(last_first,", ",2)
+  #reverse the string
+  my_splits = rev(my_splits)
+  #concatenate with a space
+  first_last = str_c(my_splits, collapse = " ")
+  return(first_last)
 }
 
+reorder_name(name_in)
+reorder_name("Hancock, William")
 
 ```
 
@@ -46,11 +56,12 @@ x=c(1,3,5,7,9,11,13)
 
 powers_df<-function(x)
 {
-  
+  powers=data.frame(x=x,xsq=x^2,xsqrt=x^1/2)
+  return(powers)
 }
 
 #your code here
-
+powers_df(x)
 ```
 
 
@@ -60,9 +71,40 @@ powers_df<-function(x)
     y=0.5x if x>=0
     
     This is a variant on a relu function as used in some neural networks.
+    
+```{r}
+if_else <- function(x)
+{
+  if (x < 0) {
+    y=0.3*x
+    return(y)
+  } else 
+  {
+    y=0.5*x
+    return(y)
+  }
+}
+
+if_else(-2)
+if_else(2)
+```
+    
 
 4.) Write a function that takes in a value x and returns the first power of two
 greater than x  (use a While loop)
+
+```{r}
+find_power <- function(x)
+{  
+  y=1
+  while (y <= x) {
+    y=y*2
+  }
+  return(y)
+}
+
+find_power(2)
+```
 
 
 5) Two Sum - Write a function named two_sum()
@@ -104,11 +146,14 @@ Only one valid answer exists.
 ```{r}
 two_sum <- function(nums_vector,target){
   #your code here
- 
+ for (i in seq_along(nums_vector)) {
+  for (j in seq_along(nums_vector)) {
+    if (i+j==target) {
+      print(c(which(nums_vector==i),which(nums_vector==j)))
+    }
+  }
 }
-
-
-
+}
 
 # Test code
 nums_vector <- c(5,7,12,34,6,10,8,9)
@@ -136,12 +181,26 @@ use the same regex search pattern from each
 
 -What does \\d match to?  or alternatively [[:digit:]]
 
+\\d matches numbers from 0-9.
+
 -How do you specify a specific number of repeated characters
+
+To specify a specific number of repeated characters, you type a number surrounded by curly braces to specify the number of times you want it to repeat.
 
 ```{R}
 a="Please call me at 456-123-2329, asap"
 b="Hey, we have a code 234 on machine a-234-12, call me at 678-321-98766"
 c="On 12-23-2022, Joe over at 122 Turnpike, dialled 912-835-4756, tell me by 9:02 pm Wed"
+
+extract_phone <- function(num){
+  searchres = str_extract(num, "\\d{3}-\\d{3}-\\d{4}")
+  return(searchres)
+}
+
+extract_phone(a)
+extract_phone(b)
+extract_phone(c)
+
 ```
 
 7.)  For lines below,  extract the domains (ie the part of the address after @)
@@ -150,6 +209,16 @@ c="On 12-23-2022, Joe over at 122 Turnpike, dialled 912-835-4756, tell me by 9:0
 d="jimmy.halibut@gmail.com"
 e="His address is:  c.brown@hopeles.org, do write him"
 f="h.potter@hogwarts.edu is bouncing back on me, I wonder why?"
+
+extract_mail <- function(num){
+  addr = str_extract(num, "[\\w\\W]+@\\w+.\\w+")
+  domain = str_split_fixed(addr,"@",2)
+  return(domain[2])
+}
+
+extract_mail(d)
+extract_mail(e)
+extract_mail(f)
 
 ```
 

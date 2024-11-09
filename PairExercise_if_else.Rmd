@@ -1,7 +1,7 @@
 ---
 title: "PairProgramming_If_else"
-author: "HDS"
-date: "2024-06-24"
+author: "William Hancock, Zachary D'Urso"
+date: "2024-11-5"
 output: html_document
 ---
 
@@ -28,7 +28,7 @@ This looks like
 ```{R}
 y=0
 z=0
-x=5
+x=10
 
 if(x<10)
 {
@@ -54,7 +54,7 @@ We use an else statement
 ```{R}
 y=0
 z=0
-x=5
+x=25
 
 if(x<10)
 {
@@ -75,6 +75,9 @@ cat("Z is ",z)
 ## *Action Required:*
 
 Verify that this code works for a couple of different values of x
+when x = 5: y is 0.625, z is 25
+when x = 10: z is  2.5, z is  3.162278
+when x = 25: y is  6.25, z is  5
 
 Note
 
@@ -83,12 +86,12 @@ Each if statement can only have one else
 We can put if statements inside elses to allow for more possible options
 
 ```{R}
-x=-1
+x=5
 if(x<0)
 {
   cat("Negative X value\n")
 }else
-{if(x%%2==1)
+{if(x%%2==0)
   {
     cat("X is even\n")
   }
@@ -100,6 +103,8 @@ if(x<0)
 ```
 
 Alter this code and verify that it works
+
+When x is 2, it returns even, when it is 1, it returns odd, and if it is negative, it prints Negative X value.
 
 # Compound test conditions
 
@@ -125,9 +130,20 @@ Set up an if statement that prints out the decision
 people_in_line=3
 scones_in_stock=TRUE
 
-# write your code here
-
-
+if(people_in_line<=2)
+  {
+    cat("Stopping for coffee \n")
+}else
+  {
+if(people_in_line<=4 & scones_in_stock == TRUE)
+  {
+    cat("Stopping for coffee and scones\n")
+}else
+  {
+    cat("Not stopping for coffee\n")
+}
+}
+  
 ```
 
 ## If-else assignment statements
@@ -140,12 +156,15 @@ second for FALSE
 it might look like this
 
 ```{R}
-x=5
+x=11
 y=ifelse(x<10,0.125*x,0.25*x)
 y
 ```
 
 ## *Action: Verify that this behaves as expected when x is changed*
+
+When x = 5, y = 0.625
+When x = 11, y = 2.75
 
 This is not a structure I use much, it does save some time.   I tend to use
 the less sophisticated approach shown above.

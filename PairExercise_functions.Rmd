@@ -1,7 +1,7 @@
 ---
 title: "PairExercise_Functions"
-author: "HDS"
-date: "2024-06-24"
+author: "William Hancock, Zachary D'Urso"
+date: "2024-11-5"
 output: html_document
 ---
 
@@ -75,6 +75,18 @@ x2power(3,2)
 
 Write your self a function that takes in three variables, a, b, and c
 and returns (a+b)/c
+
+```{r}
+abc<-function(a,b,c)
+{
+  res=(a+b)/c
+  return(res)
+}
+```
+
+```{r}
+abc(2,2,2)
+```
 
 
 ## Default values
@@ -150,7 +162,21 @@ Add some basic error trapping to the function you wrote.
 Make sure c is not zero
 
 ```{R}
+abc<-function(a,b,c)
+{
+  if(c==0)
+  {
+    cat("Please enter a number greater than zero. \n")
+    return(NULL)
+  }
+  
+  res=(a+b)/c
+  return(res)
+}
+```
 
+```{r}
+abc(2,2,0)
 ```
 
 ## Do you really have to write extensive error trapping?
