@@ -147,14 +147,16 @@ Only one valid answer exists.
 
 ```{r}
 two_sum <- function(nums_vector,target){
+  res <- list()
   #your code here
  for (i in seq_along(nums_vector)) {
   for (j in seq_along(nums_vector)) {
-    if (i+j==target) {
-      print(c(which(nums_vector==i),which(nums_vector==j)))
+    if (nums_vector[i]+nums_vector[j]==target) {
+      res <- append(res, list(c(i, j)))
     }
   }
-}
+ }
+  return(res)
 }
 
 # Test code

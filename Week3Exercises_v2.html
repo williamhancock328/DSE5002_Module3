@@ -1733,27 +1733,35 @@ approach (loop inside a loop)</em></p>
 and find if there is another value that equals to target – x</em></p>
 <p><em>Use the function seq_along to iterate</em></p>
 <pre class="r"><code>two_sum &lt;- function(nums_vector,target){
+  res &lt;- list()
   #your code here
  for (i in seq_along(nums_vector)) {
   for (j in seq_along(nums_vector)) {
-    if (i+j==target) {
-      print(c(which(nums_vector==i),which(nums_vector==j)))
+    if (nums_vector[i]+nums_vector[j]==target) {
+      res &lt;- append(res, list(c(i, j)))
     }
   }
-}
+ }
+  return(res)
 }
 
 # Test code
 nums_vector &lt;- c(5,7,12,34,6,10,8,9)
 target &lt;- 13
  
-z=two_sum(nums_vector,target)</code></pre>
-<pre><code>## [1] 1 7
-## [1] 5 2
+z=two_sum(nums_vector,target)
+print(z)</code></pre>
+<pre><code>## [[1]]
+## [1] 1 7
+## 
+## [[2]]
 ## [1] 2 5
+## 
+## [[3]]
+## [1] 5 2
+## 
+## [[4]]
 ## [1] 7 1</code></pre>
-<pre class="r"><code>print(z)</code></pre>
-<pre><code>## NULL</code></pre>
 <pre class="r"><code>#expected answers
 #[1] 1 7
 #[1] 2 5
